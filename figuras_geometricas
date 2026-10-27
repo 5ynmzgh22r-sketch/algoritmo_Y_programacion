@@ -5,61 +5,121 @@ class Program
 {
     static void Main(string[] args)
     {
-        // EJERCICIO 1: Cuadrado hueco de lado 5
-        Console.WriteLine("1. CUADRADO HUECO");
+        int opcion;
+        int tamano;
 
-        for (int i = 0; i < 5; i++)
+        do
         {
-            for (int j = 0; j < 5; j++)
+            Console.Clear();
+            Console.WriteLine("===== MENU PRINCIPAL =====");
+            Console.WriteLine("1. Cuadrado hueco");
+            Console.WriteLine("2. Triangulo invertido");
+            Console.WriteLine("3. Piramide centrada");
+            Console.WriteLine("4. Salir");
+            Console.WriteLine("==========================");
+            Console.Write("Selecciona una opcion: ");
+
+            if (!int.TryParse(Console.ReadLine(), out opcion))
             {
-                if (i == 0 || i == 4 || j == 0 || j == 4)
-                {
-                    Console.Write("*");
-                }
-                else
-                {
-                    Console.Write(" ");
-                }
+                Console.WriteLine("Error: debes ingresar un numero.");
+                Console.WriteLine("Presiona una tecla para continuar...");
+                Console.ReadKey();
+                opcion = 0;
+                continue;
             }
 
-            Console.WriteLine();
-        }
-
-        // EJERCICIO 2: Triangulo rectangulo invertido
-        Console.WriteLine();
-        Console.WriteLine("2. TRIANGULO INVERTIDO");
-
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 5 - i; j++)
+            switch (opcion)
             {
-                Console.Write("*");
+                case 1:
+                    Console.Clear();
+                    Console.WriteLine("===== CUADRADO HUECO =====");
+                    Console.Write("Ingresa el tamano del cuadrado: ");
+
+                    if (!int.TryParse(Console.ReadLine(), out tamano) ||
+                        tamano < 1)
+                    {
+                        Console.WriteLine(
+                            "Error: ingresa un numero entero mayor que 0.");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < tamano; i++)
+                        {
+                            for (int j = 0; j < tamano; j++)
+                            {
+                                if (i == 0 || i == tamano - 1 ||
+                                    j == 0 || j == tamano - 1)
+                                {
+                                    Console.Write("*");
+                                }
+                                else
+                                {
+                                    Console.Write(" ");
+                                }
+                            }
+
+                            Console.WriteLine();
+                        }
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("===== TRIANGULO INVERTIDO =====");
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        for (int j = 0; j < 5 - i; j++)
+                        {
+                            Console.Write("*");
+                        }
+
+                        Console.WriteLine();
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+
+                case 3:
+                    Console.Clear();
+                    Console.WriteLine("===== PIRAMIDE CENTRADA =====");
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        for (int j = 0; j < 4 - i; j++)
+                        {
+                            Console.Write(" ");
+                        }
+
+                        for (int k = 0; k < 2 * i + 1; k++)
+                        {
+                            Console.Write("*");
+                        }
+
+                        Console.WriteLine();
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
+                    break;
+
+                case 4:
+                    Console.WriteLine("Saliendo del programa...");
+                    break;
+
+                default:
+                    Console.WriteLine("Opcion no valida. Intenta de nuevo.");
+                    Console.ReadKey();
+                    break;
             }
 
-            Console.WriteLine();
-        }
-
-        // EJERCICIO 3: Piramide centrada
-        Console.WriteLine();
-        Console.WriteLine("3. PIRAMIDE CENTRADA");
-
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 4 - i; j++)
-            {
-                Console.Write(" ");
-            }
-
-            for (int k = 0; k < 2 * i + 1; k++)
-            {
-                Console.Write("*");
-            }
-
-            Console.WriteLine();
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("Presiona una tecla para salir...");
-        Console.ReadKey();
+        } while (opcion != 4);
     }
 }
